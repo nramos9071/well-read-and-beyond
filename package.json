@@ -1,0 +1,12 @@
+{
+  "name": "well-read-beyond",
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "scripts": {
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
