@@ -3,9 +3,16 @@ const bcrypt = require('bcrypt');
 
 // This sets up what a User, Pass looks like in the database
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true, trim: true }, // Username is needed and must be unique
-
-  password: { type: String, required: true, minlength: 8 }, // Password must be at least 8 characters
+  username: { 
+    type: String, 
+    required: true, 
+    unique: true, 
+    trim: true 
+  }, // Username is needed and must be unique
+  password: { 
+    type: String, 
+    required: true, 
+    minlength: 8 }, // Password must be at least 8 characters
 });
 
 // Automatically hashes the password before saving to keep it secure
