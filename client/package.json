@@ -13,6 +13,8 @@
   "description": "",
   "dependencies": {
     "@apollo/client": "^3.11.10",
+    "@vitejs/plugin-react": "^4.3.4",
+    "bootstrap": "^5.3.3",
     "express": "^4.21.1",
     "graphql": "^16.9.0",
     "jwt-decode": "^4.0.0",
