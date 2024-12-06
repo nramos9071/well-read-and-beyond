@@ -9,6 +9,7 @@ import { Outlet } from 'react-router-dom';
 
 import Header from './components/header';
 import Footer from './components/footer';
+import Navbar from './components/Navbar';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
         <main>
             <Header />
+            <Navbar />
             <Outlet />
             <Footer />
         </main>
