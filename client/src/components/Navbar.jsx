@@ -9,9 +9,9 @@ function Navbar() {
     </div>
     <div className="flex-none gap-2">
       <form>
-        <input bordered type="text" placeholder="Search" className="w-24 md:w-auto" />
+        <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
       </form>
-      <dropdown end>
+      <dropdown end="true">
         <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
           <div className="w-10 rounded-full">
             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
