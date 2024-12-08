@@ -1,5 +1,3 @@
-import React from "react";
-
 function bookCard() {
     return (
         <div id="bookCard" className="card card-side bg-base-100 shadow-xl size-40">
