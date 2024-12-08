@@ -1,5 +1,3 @@
-import React from "react";
-
 function movieCard() {
     return (
         <div id="movieCard" className="card card-side bg-base-100 shadow-xl size-72">
