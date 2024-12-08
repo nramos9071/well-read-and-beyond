@@ -16,7 +16,6 @@ function App() {
     return (
 
         <main>
-            <Header />
             <Navbar />
             <Outlet />
             <Footer />
