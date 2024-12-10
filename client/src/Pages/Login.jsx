@@ -1,49 +1,130 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import './Login.css'; // Importing the CSS stayle
+// import Auth from '../../../server/utils/auth';
+// import { useMutation } from '@apollo/client';
+// import { LOGIN_USER, SIGN_USER } from '../utils/mutations';
 
+const Login = () => {
+   //to switch bweteen sign up and sign in
+   const [isSignUp, setIsSignUp] = useState(true);
+   const [formState , setFormState] = useState ({ 
+       username:'',
+       email:'', 
+       password: ''});
 
-const Login = (props) => {
-    const [formState , setFormState] = useState ({ email:'', password});
-    const [login, { error, data }] = useMutation(LOGIN_USER);
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
+  //  const [login, { error, data }] = useMutation(LOGIN_USER);
+  //  const[signup, { error:signupError, data: signupData }] = useMutation(SIGNUP_USER);
+   
+//handleChange function to update the formState object with the data entered into the form fields
+   const handleChange = (event) => {
+       const { name, value } = event.target;
+       setFormState({
+           ...formState,
+           [name]: value,
+       });
     };
-
-    const handleFormSubmit = async event => {
-        event.preventDefault();
-        try {
+//handleFormSubmit function to submit the form data to the server
+   const handleFormSubmit = async event => {
+       event.preventDefault();
+       try {
+        //signup a new user
+           if (isSignUp) {
+               const { data } = await signup({
+                   variables: { username: formState.username, email: formState.email, password: formState.password },
+               });
+               //userlogs in aftersign up
+              //  Auth.login(data.signup.token);
+           } else {
+            //login an existing user
             const { data } = await login({
-                variables: { ...formState },
-            });
-            Auth.login(data.login.token);
-        } catch (e) {
-            console.error(e);
-        }
+              variables: {username: formState.username, password: formState.password },
+          });
+          // Auth.login(data.login.token);
+           }
+           //clear form values
+           setFormState({
+               username: '',
+               email: '',
+               password: '',})
 
-        setFormState({
-            email: '',
-            password: '',
-        });
-    };
-
-    return (
-        <main>
-            <div>
-                <h3>Login</h3>
-            </div>
-            <form>
-                <label id="username">UserName:</label>
-                <input name="username" type="text" id="username"></input>
-                <label id="password">Password:</label>
-                <input name="password" type="password" id="password"></input>
-                    
-            </form>
-        </main>
-    )
+       } catch (e) {
+           console.error(e);
+       }
+   };
+       
+   return (
+       <div className="container" style={{ display: 'block', opacity: 1, transition: 'opacity 1s ease-in' }}>
+         <div className="c1">
+           <div className="c11">
+             <h1 className="mainhead">Hello Well Reader!</h1>
+             <p className="mainp">Time to go beyond the book shelf..</p>
+           </div>
+           <div
+             id="left"
+             className={`toggle-button ${!isSignUp ? 'left_hover' : ''}`}
+             onClick={() => setIsSignUp(false)}
+           >
+             <h1 className={`s1class ${!isSignUp ? 'active' : ''}`}>
+               <span>SIGN</span>
+               <span className="su">IN</span>
+             </h1>
+           </div>
+           <div
+             id="right"
+             className={`toggle-button ${isSignUp ? 'right_hover' : ''}`}
+             onClick={() => setIsSignUp(true)}
+           >
+             <h1 className={`s2class ${isSignUp ? 'active' : ''}`}>
+               <span>SIGN</span>
+               <span className="su">UP</span>
+             </h1>
+           </div>
+         </div>
+       
+         <div className="c2">
+         <form className={isSignUp ? 'signup' : 'signin'} onSubmit={handleFormSubmit}>
+          <h1 className="signup1">{isSignUp ? 'SIGN UP' : 'SIGN IN'}</h1>
+          <br />
+          
+          {isSignUp && (//if isSignUp is true, then display the email input field
+            <input
+            name="email"
+            type="text"
+            placeholder="Email*"
+            className="username"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          )}
+          <input
+              name="username"
+              type="text"
+              placeholder="Username*"
+              className="username"
+              value={formState.username}
+              onChange={handleChange}
+            />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password*"
+            className="username"
+            value={formState.password}
+            onChange={handleChange}
+          />
+          <button className="btn" style={{ cursor: 'pointer' }} type="submit">
+            {isSignUp ? 'Get Started' : 'Go Beyond'}
+          </button>
+          <br />
+          {!isSignUp && (
+            <a href="/forgot-password">
+              <p className="signup2">Forgot Password?</p>
+            </a>
+          )}
+        </form>
+       </div>
+       </div>
+     );
 };
 
 export default Login;
