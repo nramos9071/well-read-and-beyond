@@ -13,5 +13,8 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "recombee-api-client": "^4.1.5"
   }
 }
