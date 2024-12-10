@@ -12,6 +12,7 @@ import Profile from './Pages/Profile';
 import Recommendations from './Pages/Recommendations';
 import './App.css'
 
+
 // Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
   {
@@ -21,11 +22,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Login />,
       },
       {
-        path: '/Login',
-        element: <Login />,
+        path: '/Home',
+        element: <Home />,
       },
       {
         path: '/Profile',

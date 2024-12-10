@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 function Navbar() {
   return (
     <nav >
@@ -19,6 +21,13 @@ function Navbar() {
         Recommendations
       </button>
     </div>
+
+          <Link className="flex-1"
+            to="/Login"
+          >
+           SignIn
+          </Link>
+      
     <div className="flex-none gap-2">
       <form>
         <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
