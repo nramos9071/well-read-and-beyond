@@ -19,13 +19,13 @@ const Profile = () => {
             </div>
             <div id="userContent">
                 <div className="flex w-full flex-col">
-                    <div className="card bg-base-300 rounded-box grid h-20 place-items-left">
+                    <div class="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Book List</h3>
                         {/* book images */}
                         <p>book images here</p>
                     </div>
                     <div className="divider"></div>
-                    <div className="card bg-base-300 rounded-box grid h-20 place-items-left">
+                    <div class="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                     <h3 className="profileH3">Movie List</h3>
                          {/* movie images */}
                         <p>movie images here</p>
