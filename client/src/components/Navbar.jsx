@@ -5,6 +5,7 @@ function Navbar() {
   return (
     <nav >
     <div className="flex-1">
+      <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
         Home
       </button>
@@ -20,6 +21,7 @@ function Navbar() {
       <button tag="a" className="text-xl normal-case" color="ghost">
         Recommendations
       </button>
+      <sp> | </sp>
     </div>
 
           <Link className="flex-1"
