@@ -13,6 +13,14 @@ const userSchema = new mongoose.Schema({
     type: String, 
     required: true, 
     minlength: 8 }, // Password must be at least 8 characters
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+  }, // Email is needed and must be unique
+  
+
 });
 
 // Automatically hashes the password before saving to keep it secure
