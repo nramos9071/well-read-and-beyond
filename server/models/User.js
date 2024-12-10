@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const bookSchema = require('./Book');
 
 // This sets up what a User, Pass looks like in the database
 const userSchema = new mongoose.Schema({
@@ -19,6 +20,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
   }, // Email is needed and must be unique
+  savedBooks: [bookSchema], // Books are stored as an array
   
 
 });
