@@ -5,8 +5,18 @@ const typeDefs = `
         password: String
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Query {
         me: Profile
+    }
+
+    type Mutation {
+        addUser(username: String!, password: String!): Auth
+        login(username: String!, password: String!): Auth
     }
 
 `
