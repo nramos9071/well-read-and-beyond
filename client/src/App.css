@@ -1,12 +1,4 @@
-/* h1 {
-    display: flex;
-    width: 100%;
-    font: 55px 'Bodoni', Times, serif;
-    color: rosybrown;
-    padding: 5px;
-    margin-bottom: 40px;
-    justify-content: center;
-} */
+/* Home Page */
 
 h3 {
     display: flex;
@@ -43,4 +35,44 @@ h3 {
     border-width: 2px;
     padding: 8px;
     margin: 10px;
+}
+
+/* Profile Page */
+
+#profile {
+    display: inline-block;
+    width: 100%;
+    font: 40px 'Bebas Neue', Times, serif;
+    color: rgb(87, 54, 10);
+    background-color: blanchedalmond;
+    padding: 5px;
+    justify-content: center;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+}
+
+#profileAvatar {
+    width: 100%;
+    justify-content: center;
+}
+
+.bioPara {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    font-size: 24px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#userContent {
+    margin: 15px;
+}
+
+.profileH3 {
+    display: flex;
+    justify-content: left;
+    padding: 15px;
+
 }
