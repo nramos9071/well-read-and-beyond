@@ -5,9 +5,23 @@ function Navbar() {
   return (
     <nav >
     <div className="flex-1">
+      <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
-        daisyUI
+        Home
       </button>
+      <sp> | </sp>
+      <button tag="a" className="text-xl normal-case" color="ghost">
+        Login
+      </button>
+      <sp> | </sp>
+      <button tag="a" className="text-xl normal-case" color="ghost">
+        Profile
+      </button>
+      <sp> | </sp>
+      <button tag="a" className="text-xl normal-case" color="ghost">
+        Recommendations
+      </button>
+      <sp> | </sp>
     </div>
 
           <Link className="flex-1"
