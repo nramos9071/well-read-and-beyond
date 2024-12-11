@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
 
 // This will be used in the user model
-const bookSchema = new Schema({
+const Books = new Schema({
   authors: [
     {
       type: String,
@@ -28,4 +28,4 @@ const bookSchema = new Schema({
   },
 });
 
-module.exports = bookSchema;
+module.exports = Books;

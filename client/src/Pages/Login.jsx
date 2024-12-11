@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
 import './Login.css'; // Importing the CSS stayle
 // import Auth from '../../../server/utils/auth';
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER, SIGN_USER } from '../utils/mutations';
+import { gql, useMutation } from '@apollo/client';
+
+
+
+
+const SIGNUP_USER = gql`
+  mutation signUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
 
 const Login = () => {
    //to switch bweteen sign up and sign in
@@ -13,7 +28,8 @@ const Login = () => {
        password: ''});
 
   //  const [login, { error, data }] = useMutation(LOGIN_USER);
-  //  const[signup, { error:signupError, data: signupData }] = useMutation(SIGNUP_USER);
+  const[signUp, { error:signupError, data: signupData }] = useMutation(SIGNUP_USER);
+  
    
 //handleChange function to update the formState object with the data entered into the form fields
    const handleChange = (event) => {
@@ -29,7 +45,9 @@ const Login = () => {
        try {
         //signup a new user
            if (isSignUp) {
-               const { data } = await signup({
+          
+               const { data } = await signUp({
+                
                    variables: { username: formState.username, email: formState.email, password: formState.password },
                });
                //userlogs in aftersign up

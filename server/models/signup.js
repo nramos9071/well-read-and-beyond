@@ -1,4 +1,4 @@
-const { User } = require('./User');
+const  User  = require('./User');
 
 // This function handles signing up new users
 const signUpUser = async ({ username, password }) => {

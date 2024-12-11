@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const bookSchema = require('./Book');
+const bookSchema = require('./Books');
 
 // This sets up what a User, Pass looks like in the database
 const userSchema = new mongoose.Schema({
