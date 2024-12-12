@@ -12,7 +12,22 @@ import Footer from './components/footer';
 import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql', // Replace with your GraphQL server URI
+    uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
+});
+
+
+
+// Set up authentication link (if needed)
+const authLink = setContext((_, { headers }) => {
+    // Get the authentication token from local storage if it exists
+    const token = localStorage.getItem('auth-token');
+    // Return the headers to the context so httpLink can read them
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : '',
+        },
+    };
 });
 
 const client = new ApolloClient({

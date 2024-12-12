@@ -31,6 +31,12 @@ function Navbar() {
         <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
       </form>
       <dropdown end="true">
+
+
+      <form>
+        <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
+      </form>
+
         <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
           <div className="w-10 rounded-full">
             
