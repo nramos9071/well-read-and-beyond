@@ -5,17 +5,19 @@ import { searchBooks } from '../utils/API';
 
 
 const  BookSearch = () => {
-    const [query] = useState("");
+    const [query, setQuery] = useState("");
     const [book, setBook] = useState("");
     const [data, setData] = useState([]);
     
     function handleChange(event) {  
         const book = event.target.value;  
         setBook(book);  
+        setQuery(book); // Update the query state
     }
 
     const googleBooksSearch = (event) => {
         if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission
             searchBooks(query)
             .then(data => {
                 console.log(data.data.items);
@@ -31,7 +33,7 @@ const  BookSearch = () => {
             className="input input-bordered flex items-center gap-2 color-white">
                 <input onChange = {handleChange} type="text" className="grow" 
                 placeholder="Search" value={query}
-                    style={{ color: "white" }}
+                    style={{ color: "blue" }}
                     /> 
                 <button onClick={googleBooksSearch}
                     className="badge badge-info"><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#fcfcfc", }} /></button>
