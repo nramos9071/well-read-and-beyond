@@ -15,19 +15,19 @@ function Navbar() {
     <div className="flex-1">
     
       <button tag="a" className="text-xl normal-case" color="ghost">
-        <a href="./pages/Home.jsx">Home</a>
+        <a href="./home">Home</a>
       </button>
      
-      <button tag="a" className="text-xl normal-case" color="ghost">
-        <a href="./pages/Login.jsx">Login</a>
-      </button>
+      {/* <button tag="a" className="text-xl normal-case" color="ghost">
+        <a href="./">Login</a>
+      </button> */}
    
       <button tag="a" className="text-xl normal-case" color="ghost">
-      <a href="./pages/Profile.jsx">Profile</a>
+      <a href="./profile">Profile</a>
       </button>
 
       <button tag="a" className="text-xl normal-case" color="ghost">
-      <a href="./pages/Recommendations.jsx">Recommendations</a>
+      <a href="./recommendations">Recommendations</a>
       </button>
       <button tag="a" className="text-xl normal-case" color="ghost" onClick={handleLogout}>
           Logout
