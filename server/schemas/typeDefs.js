@@ -4,6 +4,8 @@ const typeDefs = `
         username: String
         email: String!
         password: String!
+        bio: String
+        savedBooks: [Book]
     }
 
     type Auth {
@@ -22,6 +24,8 @@ const typeDefs = `
         login(username: String!, password: String!): Auth
 
         signUp(username: String!, email: String!, password: String!): Auth
+
+        updateUserBio(bio: String!): User
         removeUser: User 
 
     }
