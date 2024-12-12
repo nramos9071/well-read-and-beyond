@@ -6,7 +6,7 @@ const bookSchema = require('./Books');
 const userSchema = new mongoose.Schema({
   username: { 
     type: String, 
-    required: true, 
+    required: false, 
     unique: true, 
     trim: true 
   }, // Username is needed and must be unique
