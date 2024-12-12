@@ -70,6 +70,12 @@ h3 {
     margin: 15px;
 }
 
+.card {
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+}
+
 .profileH3 {
     display: flex;
     justify-content: left;
