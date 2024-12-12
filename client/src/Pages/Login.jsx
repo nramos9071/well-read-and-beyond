@@ -27,7 +27,6 @@ const LOGIN_USER = gql`
       user {
         _id
         username
-        email
       }
     }
   }
@@ -183,9 +182,7 @@ const Login = () => {
           <button className="btn" style={{ cursor: 'pointer' }} type="submit">
             {isSignUp ? 'Get Started' : 'Go Beyond'}
           </button>
-          <button className="btn" style={{ cursor: 'pointer' }} onClick={handleButtonClick}>
-            Test Button
-          </button>
+      
           <br />
           {!isSignUp && (
             <a href="/forgot-password">

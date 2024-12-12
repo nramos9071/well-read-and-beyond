@@ -1,7 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Auth.logout();
+    navigate('/'); // Redirect to login page after logout
+  };
+
   return (
     <nav >
     <div className="flex-1">
@@ -21,6 +29,9 @@ function Navbar() {
       <button tag="a" className="text-xl normal-case" color="ghost">
       <a href="./pages/Recommendations.jsx">Recommendations</a>
       </button>
+      <button tag="a" className="text-xl normal-case" color="ghost" onClick={handleLogout}>
+          Logout
+        </button>
   
     </div>
 
