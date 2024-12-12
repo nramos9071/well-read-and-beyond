@@ -7,37 +7,30 @@ function Navbar() {
     <div className="flex-1">
       <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Home
+        <a href="./pages/Home.jsx">Home</a>
       </button>
       <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Login
+        <a href="./pages/Login.jsx">Login</a>
       </button>
       <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Profile
+      <a href="./pages/Profile.jsx">Profile</a>
       </button>
       <sp> | </sp>
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Recommendations
+      <a href="./pages/Recommendations.jsx">Recommendations</a>
       </button>
       <sp> | </sp>
     </div>
 
-          <Link className="flex-1"
-            to="/Login"
-          >
-           SignIn
-          </Link>
+         
       
     <div className="flex-none gap-2">
-      <form>
-        <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
-      </form>
       <dropdown end="true">
         <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
           <div className="w-10 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            
           </div>
         </button>
         {/* <dropdown.Menu className="w-52 menu-sm mt-3 z-[1] p-2">
