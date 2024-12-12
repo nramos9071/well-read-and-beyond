@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
 import './Login.css'; // Importing the CSS stayle
 // import Auth from '../../../server/utils/auth';
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER, SIGN_USER } from '../utils/mutations';
+import { gql, useMutation } from '@apollo/client';
+
+
+
+
+const SIGNUP_USER = gql`
+  mutation signUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
+
+const LOGIN_USER = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
 
 const Login = () => {
    //to switch bweteen sign up and sign in
@@ -12,8 +40,9 @@ const Login = () => {
        email:'', 
        password: ''});
 
-  //  const [login, { error, data }] = useMutation(LOGIN_USER);
-  //  const[signup, { error:signupError, data: signupData }] = useMutation(SIGNUP_USER);
+   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const[signUp, { error:signupError, data: signupData }] = useMutation(SIGNUP_USER);
+  
    
 //handleChange function to update the formState object with the data entered into the form fields
    const handleChange = (event) => {
@@ -26,20 +55,33 @@ const Login = () => {
 //handleFormSubmit function to submit the form data to the server
    const handleFormSubmit = async event => {
        event.preventDefault();
+
        try {
+        // Basic client-side validation
+        if (!formState.username || !formState.password || (isSignUp && !formState.email)) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
+        // Debugging: Log formState values
+        console.log('Form State:', formState);
+
+
         //signup a new user
            if (isSignUp) {
-               const { data } = await signup({
+          
+               const { data } = await signUp({
+                
                    variables: { username: formState.username, email: formState.email, password: formState.password },
                });
                //userlogs in aftersign up
-              //  Auth.login(data.signup.token);
+               Auth.login(data.signup.token);
            } else {
             //login an existing user
             const { data } = await login({
               variables: {username: formState.username, password: formState.password },
           });
-          // Auth.login(data.login.token);
+          Auth.login(data.login.token);
            }
            //clear form values
            setFormState({

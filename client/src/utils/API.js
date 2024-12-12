@@ -7,24 +7,48 @@ const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 
 export default {
 searchGoogleBooks: (query) => {
-  return axios.get(`https://www.googleapis.com/books/v1/volumes?q=maxResults=10&filter=non-fiction&${query}&key=${apiKey}`)
-},
-// Gets all books
-
-getBooks: function() {
-  return axios.get('/api/books');
-},
-// Gets the book with the given id
-getBook: function(id) {
-  return axios.get('/api/books/' + id);
-},
-//saves book to the database
-saveBook: function(bookData) {
-  return axios.post('/api/books', bookData);
-},
-// Deletes the book with the given id
-deleteBook: function(id) {
-  return axios.delete('/api/books/' + id);
-}
-
+        const baseURL = 'https://www.googleapis.com/books/v1/volumes';
+        //setting the query to the base URL to produce a maximum of 10 results for non-fiction books
+        const url = `${baseURL}?q=${query}&maxResults=10&filter=non-fiction&key=${apiKey}`;
+    
+    return axios
+      .get(url)
+      .then((response) => response.data) // Extract the data
+      .catch((error) => {
+        console.error('Error fetching books from Google Books API:', error);
+        throw error;
+      });
+    },
 };
+//searching all books
+export const searchBooks = async (query) => {
+    try {
+      const response = await axios.get('/api/books/search', {
+        params: { query },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error searching books:', error);
+      throw error;
+    }
+  };
+  //savebook 
+    export const savedBooks = async () => {
+        try {
+        const response = await axios.get('/api/books');
+        return response.data;
+        } catch (error) {
+        console.error('Error getting saved books:', error);
+        throw error;
+        }
+    };
+//delete book
+    export const deleteBook = async (bookId) => {
+        try {
+        const response = await axios.delete(`/api/books/${bookId}`);
+        return response.data;
+        } catch (error) {
+        console.error('Error deleting book:', error);
+        throw error;
+        }
+    }
