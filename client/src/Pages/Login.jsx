@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'; // Importing the CSS stayle
-// import Auth from '../../../server/utils/auth';
+import Auth from '../../../client/src/utils/auth';
 import { gql, useMutation } from '@apollo/client';
 
 
@@ -68,21 +68,31 @@ const Login = () => {
 
 
         //signup a new user
-           if (isSignUp) {
-          
-               const { data } = await signUp({
-                
-                   variables: { username: formState.username, email: formState.email, password: formState.password },
-               });
-               //userlogs in aftersign up
-               Auth.login(data.signup.token);
-           } else {
-            //login an existing user
-            const { data } = await login({
-              variables: {username: formState.username, password: formState.password },
+        if (isSignUp) {
+          const { data } = await signUp({
+              variables: { username: formState.username, email: formState.email, password: formState.password },
           });
-          Auth.login(data.login.token);
-           }
+          // Debugging: Log the response data
+          console.log('Sign Up Data:', data);
+          if (data && data.signUp && data.signUp.token) {
+              // user logs in after sign up
+              Auth.login(data.signUp.token);
+          } else {
+              console.error('Sign Up Error: No token returned');
+          }
+      } else {
+          // login an existing user
+          const { data } = await login({
+              variables: { username: formState.username, password: formState.password },
+          });
+          // Debugging: Log the response data
+          console.log('Login Data:', data);
+          if (data && data.login && data.login.token) {
+              Auth.login(data.login.token);
+          } else {
+              console.error('Login Error: No token returned');
+          }
+      }
            //clear form values
            setFormState({
                username: '',
