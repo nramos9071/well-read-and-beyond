@@ -49,7 +49,7 @@ const resolvers = {
             if (context.user) {
                 return User.findOneAndDelete({_id: context.user._id});
             }
-            throw AuthenticationError;
+            throw new AuthenticationError('Not logged in');
         },
     }
 
