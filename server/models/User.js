@@ -19,7 +19,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
-  }, // Email is needed and must be unique
+  }, 
+  bio: {
+    type: String,
+    trim: true,// Email is needed and must be unique
   savedBooks: [bookSchema], // Books are stored as an array
   
 

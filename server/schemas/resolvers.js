@@ -55,6 +55,16 @@ const resolvers = {
 
         },
 
+        updateUserBio: async (parent, { bio }, context) => {
+            if (context.user) {
+                return await User.findOneAndUpdate({_id: context.user._id}, 
+                    { bio }, 
+                    { new: true });
+                 }
+                 throw new AuthenticationError('Not logged in');
+            },
+            
+
         removeUser: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndDelete({_id: context.user._id});
