@@ -1,15 +1,23 @@
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
+import React from 'react';
+// import Navbar from '../components/Navbar';
+// import Footer from '../components/Footer';
+import MovieCard from '../components/movieCard';
+import BookCard from '../components/BookCard';
+import BookSearch from '../components/BookSearch';
 
-import Navbar from '../components/Navbar';
-import Footer from '../components/footer';
-import movieCard from '../components/movieCard';
-import bookCard from '../components/bookCard';
 
 
 const Home = () => {
 
+   
     return (
+
         <div>
+            {/* {search input} */}
+            <div>
+                <BookSearch />
+            </div>
             {/* <div className="container">
                 <h1>Welcome to the Home Page</h1>
             </div> */}
@@ -18,8 +26,13 @@ const Home = () => {
                     <h3 className="rounded box">My Books</h3>
                     <div id="homePageBooks" className="flex-auto">
                         <ul id="homePageBooksList" className="flex justify-center flex-col">
-                            {/* Append current books from user database? */}
-                            {bookCard()}
+                            {/* Append user's searched books */}
+                                <BookCard
+            
+                                />
+                            : (
+                                <p>No books found.</p>
+                            )
                         </ul>
                     </div>
                 </div>
@@ -29,7 +42,9 @@ const Home = () => {
                         <ul id="homePageMovieList" className="flex-col">
                             {/* Append movie recommendations from TMDB API based on selected Book */}
                             {/* Auto generate recommendations based on first book in list? Or favorite Genre? */}
-                            {movieCard()}
+                            <div>
+                                <MovieCard />
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -37,7 +52,7 @@ const Home = () => {
 
         </div>
     )
+}
 
-};
 
 export default Home;
