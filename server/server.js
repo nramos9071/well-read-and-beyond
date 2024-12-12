@@ -3,6 +3,7 @@ const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');   
+const cors = require('cors');
 const { authMiddleware } = require('./utils/auth')
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -10,6 +11,11 @@ const db = require('./config/connection');
 const User = require('./models/User');
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your client-side application's origin
+}));
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
