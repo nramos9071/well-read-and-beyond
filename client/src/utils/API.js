@@ -1,7 +1,11 @@
 // Axios is a popular NPM package used for preforming API requests
 import axios from 'axios';
 // import { get } from 'mongoose';
-const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
+
+console.log(apiKey);
+
+
 
 // Using axios, we create a search method that is specific to the API we are using
 
@@ -9,7 +13,7 @@ export default {
 searchGoogleBooks: (query) => {
         const baseURL = 'https://www.googleapis.com/books/v1/volumes';
         //setting the query to the base URL to produce a maximum of 10 results for non-fiction books
-        const url = `${baseURL}?q=${query}&maxResults=10&filter=non-fiction&key=${apiKey}`;
+        const url = `${baseURL}?q=${query}&maxResults=10&fiction&orderBy=relevance&key=${apiKey}`;
     
     return axios
       .get(url)
