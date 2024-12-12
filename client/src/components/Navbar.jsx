@@ -30,7 +30,7 @@ function Navbar() {
       <form>
         <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
       </form>
-      <dropdown end="true">
+     
 
 
       <form>
