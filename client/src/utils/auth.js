@@ -2,7 +2,7 @@ class Auth {
     // Store the token in local storage
     static login(token) {
       localStorage.setItem('id_token', token);
-      window.location.assign('/');
+    //   window.location.assign('/');
     }
   
     // Retrieve the token from local storage
