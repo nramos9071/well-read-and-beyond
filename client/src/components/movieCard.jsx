@@ -1,4 +1,4 @@
-function movieCard() {
+function MovieCard() {
     return (
         <div id="movieCard" className="card card-side bg-base-100 shadow-xl size-72">
             <figure>
@@ -17,4 +17,4 @@ function movieCard() {
     );
 }
 
-export default movieCard;
+export default MovieCard;
