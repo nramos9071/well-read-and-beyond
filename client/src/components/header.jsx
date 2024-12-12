@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <header className="header">
-            <p>header placeholder</p>
+            <h1>Well Read and Beyond</h1>
         </header>
     )  
 };
