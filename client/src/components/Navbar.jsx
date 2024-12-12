@@ -5,29 +5,34 @@ function Navbar() {
   return (
     <nav >
     <div className="flex-1">
-      <sp> | </sp>
+    
       <button tag="a" className="text-xl normal-case" color="ghost">
         <a href="./pages/Home.jsx">Home</a>
       </button>
-      <sp> | </sp>
+     
       <button tag="a" className="text-xl normal-case" color="ghost">
         <a href="./pages/Login.jsx">Login</a>
       </button>
-      <sp> | </sp>
+   
       <button tag="a" className="text-xl normal-case" color="ghost">
       <a href="./pages/Profile.jsx">Profile</a>
       </button>
-      <sp> | </sp>
+
       <button tag="a" className="text-xl normal-case" color="ghost">
       <a href="./pages/Recommendations.jsx">Recommendations</a>
       </button>
-      <sp> | </sp>
+  
     </div>
 
          
       
     <div className="flex-none gap-2">
-      <dropdown end="true">
+
+
+      <form>
+        <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
+      </form>
+
         <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
           <div className="w-10 rounded-full">
             
@@ -43,7 +48,7 @@ function Navbar() {
           {/* <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Item>Logout</Dropdown.Item>
         </Dropdown.Menu>*/}
-      </dropdown> 
+
     </div>
   </nav>
   );
