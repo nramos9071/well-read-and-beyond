@@ -1,5 +1,5 @@
-import movieCard from '../components/movieCard';
-import bookCard from '../components/bookCard';
+// import movieCard from '../src/components/movieCard';
+// import bookCard from '../src/components/bookCard';
 
 const Profile = () => {
 
