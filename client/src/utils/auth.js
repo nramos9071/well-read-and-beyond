@@ -13,7 +13,7 @@ class Auth {
     // Remove the token from local storage
     static logout() {
       localStorage.removeItem('id_token');
-      window.location.assign('/');
+      // window.location.assign('/login');
     }
   
     // Check if the user is logged in
