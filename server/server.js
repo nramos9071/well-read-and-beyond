@@ -19,6 +19,7 @@ app.use(cors({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => authMiddleware({ req }),
 });
 
 const startApolloServer = async () => {

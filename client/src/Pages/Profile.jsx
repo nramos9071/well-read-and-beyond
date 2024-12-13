@@ -1,10 +1,14 @@
-// import movieCard from '../src/components/movieCard';
-// import bookCard from '../src/components/bookCard';
+import React from 'react';
+
+// import movieCard from '../components/movieCard';
+
+
+// import bookCard from '../components/bookCard';
 
 const Profile = () => {
 
     return (
-        <div id="profile">
+        <div id="profile1">
             <div className="heading justify-center">
                 <h2>Profile Page</h2>
             </div>
@@ -19,13 +23,13 @@ const Profile = () => {
             </div>
             <div id="userContent">
                 <div className="flex w-full flex-col">
-                    <div class="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
+                    <div id="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Book List</h3>
                         {/* book images */}
                         <p>book images here</p>
                     </div>
                     <div className="divider"></div>
-                    <div class="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
+                    <div id="profileCards1" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                     <h3 className="profileH3">Movie List</h3>
                          {/* movie images */}
                         <p>movie images here</p>
