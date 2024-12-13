@@ -35,7 +35,7 @@ const Navbar = () => {
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Recommendations">Recommendations</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/profile">Profile</a></li>
-          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/logout">Logout</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/login">Logout</a></li>
         </ul>
       </div>
     </div>
