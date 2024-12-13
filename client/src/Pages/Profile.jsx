@@ -41,7 +41,7 @@ const Profile = () => {
     return (
         <div id="profile1">
             <div className="heading justify-center">
-                <h2>Profile Page</h2>
+                {/* <h2>Profile Page</h2> */}
             </div>
             <div className="avatar" id="profileAvatar">
                 <div className=" rounded-full size-60">
@@ -57,10 +57,9 @@ const Profile = () => {
                     <div id="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Book List</h3>
                         {/* book images */}
-                        <p>book images here</p>
+
                         {(
                             <div>
-                                <h2>Saved Books</h2>
                                 {books.length > 0 ? (
                                     <ul>
                                         {books.map((book, index) => (
