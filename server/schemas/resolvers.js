@@ -2,6 +2,7 @@ const  User  = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
+// const { google } = require('googleapis'); // Import Google API client
 
 
 const resolvers = {
@@ -21,6 +22,7 @@ const resolvers = {
         throw AuthenticationError;
         },
     },
+    
 
     Mutation: {
 
@@ -72,7 +74,39 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-    }
+    },
+
+    User: {
+        
+        savedBooks: async (parent) => {
+          if (!parent.accessToken) {
+            return []; // Return empty array if no access token is available
+          }
+    
+          // Initialize the Google Books API client with the stored access token
+          const booksApi = google.books({ version: 'v1', auth: parent.accessToken });
+    
+          try {
+            // Make the API request to fetch books from the user's Google Books account
+            const response = await booksApi.mylibrary.bookshelves.list();
+    
+            // If response contains bookshelves, map them to the format expected by the schema
+            if (response.data.items) {
+              return response.data.items.map(item => ({
+                title: item.volumeInfo.title,
+                author: item.volumeInfo.authors?.join(', ') || 'Unknown',
+                _id: item.id
+              }));
+            }
+    
+            return []; // Return empty array if no books found
+          } catch (error) {
+            console.error('Error fetching saved books:', error);
+            return []; // Return empty array in case of error
+          }
+        },
+      },
+    
 
 };
 
