@@ -1,43 +1,52 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Auth.logout();
+    navigate('/'); // Redirect to login page after logout
+  };
+
   return (
     <nav >
     <div className="flex-1">
-      <sp> | </sp>
+    
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Home
+        <a href="./home">Home</a>
       </button>
-      <sp> | </sp>
+     
+      {/* <button tag="a" className="text-xl normal-case" color="ghost">
+        <a href="./">Login</a>
+      </button> */}
+   
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Login
+      <a href="./profile">Profile</a>
       </button>
-      <sp> | </sp>
+
       <button tag="a" className="text-xl normal-case" color="ghost">
-        Profile
+      <a href="./recommendations">Recommendations</a>
       </button>
-      <sp> | </sp>
-      <button tag="a" className="text-xl normal-case" color="ghost">
-        Recommendations
-      </button>
-      <sp> | </sp>
+      <button tag="a" className="text-xl normal-case" color="ghost" onClick={handleLogout}>
+          Logout
+        </button>
+  
     </div>
 
-          <Link className="flex-1"
-            to="/Login"
-          >
-           SignIn
-          </Link>
+         
       
     <div className="flex-none gap-2">
+
+
       <form>
         <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
       </form>
-      <dropdown end="true">
+
         <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
           <div className="w-10 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            
           </div>
         </button>
         {/* <dropdown.Menu className="w-52 menu-sm mt-3 z-[1] p-2">
@@ -50,7 +59,7 @@ function Navbar() {
           {/* <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Item>Logout</Dropdown.Item>
         </Dropdown.Menu>*/}
-      </dropdown> 
+
     </div>
   </nav>
   );
