@@ -1,20 +1,37 @@
-function bookCard() {
+import React, { useState } from "react";
+
+
+function BookCard({data}) {
+    // const [show,setShow]=useState(false);
+    // const [bookItem,setItem]=useState();
+    console.log(data);
     return (
+      <div>
+
         <div id="bookCard" className="card card-side bg-base-100 shadow-xl size-40">
-            <figure>
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                    alt="Books" />
-            </figure>
-            <div className="card-body">
-                <h2 className="card-title">Title of Book</h2>
-                {/* <p>Click the button to learn about this book.</p> */}
-                <div className="card-actions justify-end">
+        <div>
+                <ul>
+                    {data?.items?.map((book, index) => (
+                       
+                        <li key={index}>
+                            <figure>
+                            <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+                            </figure>
+                            <div className="card-body"></div>
+                            <h2 className="card-actions justify-end">{book.title}</h2>
+                            <h3>{book.id}</h3>
+                            <div className="card-actions justify-end">
                     <button className="btn btn-primary">View</button>
-                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+        </div>
+            
             </div>
         </div>
+      
     );
 }
 
-export default bookCard;
+export default BookCard;
