@@ -8,6 +8,12 @@ const typeDefs = `
         savedBooks: [Book]
     }
 
+    type Book {
+    _id: ID
+    title: String
+    author: String
+  }
+
     type Auth {
         token: String!
         user: User!
