@@ -1,9 +1,9 @@
 import React from 'react';
 
 // import movieCard from '../components/movieCard';
-
-
 // import bookCard from '../components/bookCard';
+
+
 
 const Profile = () => {
 
