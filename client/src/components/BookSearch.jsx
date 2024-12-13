@@ -1,14 +1,35 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { searchBooks } from '../utils/API';
+import { savedBooks} from '../utils/API';
 import searchGoogleBooks from '../utils/API';
 import './BookSearch.css';
+// import Auth from '../utils/auth';
 
 const BookSearch = () => {
     const [query, setQuery] = useState("");
     const [book, setBook] = useState("");
-    const [data, setData] = useState([]);
+   const [data, setData] = useState([]);
+    const [savedBookIds, setSavedBookIds] = useState([]);
+    //checkif user is logged in retrieves the token then saves the book
+    const handleSaveBook = async (book) => {
+       try {
+            const response = await savedBooks({
+                bookId: book.id,
+                title: book.volumeInfo.title,
+                authors: book.volumeInfo.authors,
+                description: book.volumeInfo.description,
+                image: book.volumeInfo.imageLinks?.thumbnail,
+                link: book.volumeInfo.infoLink,
+            });
+            console.log('Saved book:', response);
+            // If the book is successfully saved to the user's account
+            setSavedBookIds([...savedBookIds, response.bookId]);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
 
     function handleChange(event) {
         const book = event.target.value;
@@ -16,19 +37,10 @@ const BookSearch = () => {
         setQuery(book); // Update the query state
     }
 
-    const callAPI = (event) => {
+    
 
-        event.preventDefault(); // Prevent form submission
-        searchGoogleBooks(query)
-            .then(data => {
-                console.log("API call", data.data.items);
-                // setData(data.data.items);
-            }).catch(error => {
-                console.error("Error fetching data: ", error);
-            });
-
-    };
     return (
+   
         <div>
             <form onSubmit={async (event) => {
                 event.preventDefault();
@@ -59,19 +71,31 @@ const BookSearch = () => {
                                 <div className="card-actions justify-end"></div>
                                 {/*if user is logged in, display save button*/}
                                 {/* {user?.loggedIn && ( */}
+                                <div>
+                                    {/* Button to save book to user's book shelf */}
                             <button 
                                 className="btn btn-primary" 
-                                id={book.id} 
-                                onClick={(event) => handleSavedButton(event)}
+                                id={book.id}
+                                disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                
+                        onClick={() => handleSaveBook(book)}>
+                        {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
+                          ? 'This book has already been saved!'
+                          : 'Save to your Bookshelf!'}
+                            </button>
+                            <button 
+                                className="btn btn-primary"
+                               
                             >
-                                Save to your Bookshelf!
+                                See recomended films!
                             </button>
                         {/* )} */}
                             </div>
                         </div>
+                        </div>
                     ))}
                 </div>
-            </div >
+            </div>
         </div >
     );
 };

@@ -24,30 +24,36 @@ export default function searchGoogleBooks (query){
         throw error;
       });
     };
+
+    
   
 
-//searching all books
-export const searchBooks = async (query) => {
+//get books by id
+export const getBook = async (bookId) => {
     try {
-      const response = await axios.get('/api/books/search', {
-        params: { query },
-      });
+      const response = await axios.get(`/api/books/${bookId}`);
       return response.data;
     } catch (error) {
-      console.error('Error searching books:', error);
+      console.error('Error getting book:', error);
       throw error;
     }
   };
-  //savebook 
-    export const savedBooks = async () => {
+
+  //save books for user bookshelf 
+    export const savedBooks = async (book) => {
         try {
-        const response = await axios.get('/api/books');
-        return response.data;
-        } catch (error) {
-        console.error('Error getting saved books:', error);
-        throw error;
-        }
-    };
+        const response = await axios.post('/api/books', book, {
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${token}`,
+      },
+  });
+  return response.data;
+} catch (error) {
+  console.error('Error with saved books!', error);
+  throw error;
+}
+};
 //delete book
     export const deleteBook = async (bookId) => {
         try {

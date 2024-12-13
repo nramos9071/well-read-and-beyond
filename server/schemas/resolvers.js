@@ -73,42 +73,26 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
-
-    },
-
-    User: {
-        
-        savedBooks: async (parent) => {
-          if (!parent.accessToken) {
-            return []; // Return empty array if no access token is available
-          }
-    
-          // Initialize the Google Books API client with the stored access token
-          const booksApi = google.books({ version: 'v1', auth: parent.accessToken });
-    
-          try {
-            // Make the API request to fetch books from the user's Google Books account
-            const response = await booksApi.mylibrary.bookshelves.list();
-    
-            // If response contains bookshelves, map them to the format expected by the schema
-            if (response.data.items) {
-              return response.data.items.map(item => ({
-                title: item.volumeInfo.title,
-                author: item.volumeInfo.authors?.join(', ') || 'Unknown',
-                _id: item.id
-              }));
-            }
-    
-            return []; // Return empty array if no books found
-          } catch (error) {
-            console.error('Error fetching saved books:', error);
-            return []; // Return empty array in case of error
-          }
+        // save a book 
+        saveBook: async (parent, {user, body}) => {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: user._id },
+                { $addToSet: { savedBooks: body } },
+                { new: true, runValidators: true }
+            );
+            return updatedUser;
         },
-      },
-    
 
+        // remove a book from saved books
+        deleteBook: async (parent, { user, params }) => {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: user._id },
+                { $pull: { savedBooks: { bookId: params.bookId } } },
+                { new: true }
+            );
+            return updatedUser;
+        }
+    }
 };
-
 
 module.exports = resolvers;

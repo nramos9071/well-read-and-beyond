@@ -11,7 +11,7 @@ const db = require('./config/connection');
 const User = require('./models/User');
 const PORT = process.env.PORT || 3001;
 const app = express();
-
+const bookRoutes = require('./routes/bookRoutes');
 app.use(cors({
     origin: 'http://localhost:5173', // Replace with your client-side application's origin
 }));
@@ -31,7 +31,9 @@ const startApolloServer = async () => {
     app.use('/graphql', expressMiddleware(server, {
         context: authMiddleware
     }));
-
+ // Use the book routes
+ app.use('/api', bookRoutes);
+ 
     if (process.env.NODE_ENV === 'production') {
         app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -46,6 +48,7 @@ const startApolloServer = async () => {
             console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
         });
     });
+   
 
 };
 
