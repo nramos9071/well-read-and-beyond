@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,// Email is needed and must be unique
   savedBooks: [bookSchema], // Books are stored as an array
-  
+  }
 
 });
 
