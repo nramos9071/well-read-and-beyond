@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 const Header = () => {
-    return (
-        <header className="header">
-            <h1>Well Read and Beyond</h1>
-        </header>
-    )  
+  return (
+    <header style={{ backgroundColor: '#FFB6C1' }} className="shadow-md p-4">
+      <div className="container mx-auto flex justify-center">
+        <h1
+          className="text-6xl text-center"
+          style={{
+            fontFamily: '"Pacifico", cursive',
+            color: '#E6E6FA',
+          }}
+        >
+          Well Read and Beyond
+        </h1>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

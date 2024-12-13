@@ -1,68 +1,45 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Auth from '../utils/auth';
 
-function Navbar() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    Auth.logout();
-    navigate('/'); // Redirect to login page after logout
-  };
-
+const Navbar = () => {
   return (
-    <nav >
-    <div className="flex-1">
-    
-      <button tag="a" className="text-xl normal-case" color="ghost">
-        <a href="./home">Home</a>
-      </button>
-     
-      {/* <button tag="a" className="text-xl normal-case" color="ghost">
-        <a href="./">Login</a>
-      </button> */}
-   
-      <button tag="a" className="text-xl normal-case" color="ghost">
-      <a href="./profile">Profile</a>
-      </button>
-
-      <button tag="a" className="text-xl normal-case" color="ghost">
-      <a href="./recommendations">Recommendations</a>
-      </button>
-      <button tag="a" className="text-xl normal-case" color="ghost" onClick={handleLogout}>
-          Logout
-        </button>
-  
+    <div className="navbar bg-cream shadow-md fixed top-0 left-0 right-0">
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Recommendations">Recommendations</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/profile">Profile</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+      <div className="dropdown dropdown-end lg:hidden">
+        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-pink-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </label>
+        <ul
+          tabIndex={0}
+          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-cream rounded-box w-52"
+        >
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Recommendations">Recommendations</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/profile">Profile</a></li>
+          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/logout">Logout</a></li>
+        </ul>
+      </div>
     </div>
-
-         
-      
-    <div className="flex-none gap-2">
-
-
-      <form>
-        <input bordered="true" type="text" placeholder="Search" className="w-24 md:w-auto" />
-      </form>
-
-        <button tag="label" tabIndex={0} color="ghost" className="avatar" shape="circle">
-          <div className="w-10 rounded-full">
-            
-          </div>
-        </button>
-        {/* <dropdown.Menu className="w-52 menu-sm mt-3 z-[1] p-2">
-          <li>
-            <a className="justify-between">
-              Profile
-              <Badge>New</Badge>
-            </a>
-          </li>
-          {/* <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Logout</Dropdown.Item>
-        </Dropdown.Menu>*/}
-
-    </div>
-  </nav>
   );
-}
+};
 
 export default Navbar;
