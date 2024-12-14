@@ -1,7 +1,35 @@
 // Profile.js (React Component)
 import React, { useEffect, useState } from 'react';
+import { useQuery, gql } from '@apollo/client';
 import axios from 'axios';
 import * as jwt_decode from 'jwt-decode';
+import Cookies from 'js-cookie'
+import BookCard from '../components/bookCard'
+
+
+
+const GET_ME = gql`
+  query me {
+    me {
+      id
+      email
+      savedBooks {
+        id
+        volumeInfo {
+          title
+          authors
+          publishedDate
+          imageLinks {
+            thumbnail
+          }
+          description
+        }
+      }
+    }
+  }
+`;
+
+
 
 const Profile = () => {
 
@@ -10,13 +38,13 @@ const Profile = () => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        // Extract userId from the token stored in localStorage (or wherever you're storing it)
-        const token = localStorage.getItem('token'); // Assuming the token is saved in localStorage
+        // Extract userId from the token stored in cookies
+        const token = Cookies.get('id_token'); // Assuming the token is saved in cookies
         if (token) {
-            const decodedToken = jwt_decode(token); // Use the correct `decode` function here
-            setUserId(decodedToken._id);  // Get userId from decoded token
+          const decodedToken = jwt_decode(token); // Use the correct `decode` function here
+          setUserId(decodedToken._id);  // Get userId from decoded token
         }
-    }, []);
+      }, []);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -62,17 +90,12 @@ const Profile = () => {
                             <div>
                                 <h2>Saved Books</h2>
                                 {books.length > 0 ? (
-                                    <ul>
+                                    <div className="card-grid" id="BookCard">
                                         {books.map((book, index) => (
-                                            <li key={index}>
-                                                <strong>{book.volumeInfo.title}</strong>
-                                                <p>{book.volumeInfo.authors?.join(', ')}</p>
-                                                <p>{book.volumeInfo.publishedDate}</p>
-                                                <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
-                                            </li>
+                                        <BookCard key={index} book={book} />
                                         ))}
-                                    </ul>
-                                ) : (
+                                    </div>
+                                    ) : (
                                     <p>No saved books found.</p>
                                 )}
                             </div>

@@ -65,6 +65,19 @@ const resolvers = {
                  }
                  throw new AuthenticationError('Not logged in');
             },
+
+        saveBook: async (parent, { book }, context) => {
+            console.log('Received book input:', book);
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                context.user._id,
+                { $push: { savedBooks: book } },
+                { new: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+            },
             
 
         removeUser: async (parent, args, context) => {
