@@ -1,32 +1,27 @@
-const { sign } = require('crypto');
-const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
+const { AuthenticationError } = require('apollo-server-express');
 
-const secret = "readwellsecret";
+const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
-const AuthenticationError = new GraphQLError('Authentication Error', { 
-    extensions: {
-        code: 'UNAUTHENTICATED',
-    }
-});
-
 function authMiddleware({ req }) {
-    let token = req.body.token || req.query.token || req.headers.authorization;
+    let token = req.headers.authorization || '';
 
-    if (req.headers.authorization) {
+    if (token) {
         token = token.split(' ').pop().trim();
     }
 
     if (!token) {
+        console.log('No token provided');
         return req;
     }
 
     try {
         const { data } = jwt.verify(token, secret, { maxAge: expiration });
         req.user = data;
-    } catch {
-        console.error('Invalid token');
+        console.log('Token verified, user:', req.user);
+    } catch (error) {
+        console.error('Invalid token', error);
     }
 
     return req;

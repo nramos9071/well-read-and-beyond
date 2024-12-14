@@ -3,7 +3,7 @@ import React from 'react';
 // import Navbar from '../components/Navbar';
 // import Footer from '../components/Footer';
 import MovieCard from '../components/movieCard';
-import BookCard from '../components/BookCard';
+import BookCard from '../components/bookCard';
 import BookSearch from '../components/BookSearch';
 
 
