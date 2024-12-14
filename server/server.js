@@ -12,7 +12,8 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:5173', // Replace with your client-side application's origin
-}));
+    credentials: true,
+  }));
 
 const server = new ApolloServer({
   typeDefs,
@@ -33,7 +34,7 @@ const startApolloServer = async () => {
   app.use('/graphql', expressMiddleware(server, {
     context: async ({ req }) => {
       const context = authMiddleware({ req });
-    //   console.log('Middleware Context:', context);
+      console.log('Middleware Context:', context);
       return context;
     },
   }));

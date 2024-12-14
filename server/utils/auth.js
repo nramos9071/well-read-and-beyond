@@ -9,6 +9,7 @@ function authMiddleware({ req }) {
 
     if (token) {
         token = token.split(' ').pop().trim();
+        console.log('Extracted token:', token);
     }
 
     if (!token) {
@@ -21,6 +22,7 @@ function authMiddleware({ req }) {
         req.user = data;
         console.log('Token verified, user:', req.user);
     } catch (error) {
+        console.log('Token verification failed:', err.message);
         console.error('Invalid token', error);
     }
 
