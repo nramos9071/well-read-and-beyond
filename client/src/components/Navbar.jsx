@@ -1,6 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Auth.logout();
+    console.log('Logged out');
+    navigate('/');
+  }
+
   return (
     <div className="navbar bg-cream shadow-md fixed top-0 left-0 right-0">
       <div className="navbar-center hidden lg:flex">
@@ -8,7 +18,7 @@ const Navbar = () => {
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Recommendations">Recommendations</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/profile">Profile</a></li>
-          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/logout">Logout</a></li>
+          <li><button className="btn bg-pink-600 text-white border-none hover:bg-pink-700" onClick={handleLogout}>Logout</button></li>
         </ul>
       </div>
       <div className="dropdown dropdown-end lg:hidden">
@@ -30,12 +40,12 @@ const Navbar = () => {
         </label>
         <ul
           tabIndex={0}
-          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-cream rounded-box w-52"
-        >
+          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-cream rounded-box w-52">
+      
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Recommendations">Recommendations</a></li>
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/profile">Profile</a></li>
-          <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/login">Logout</a></li>
+          <li><button className="btn bg-pink-600 text-white border-none hover:bg-pink-700" onClick={handleLogout}>Logout</button></li>
         </ul>
       </div>
     </div>
