@@ -2,14 +2,15 @@ import { gql, useMutation } from '@apollo/client';
 import Auth from './auth';
 
 const SAVE_BOOK = gql`
-  mutation saveBook($book: BookInput!) {
-    saveBook(book: $book) {
+  mutation saveBooks($book: BookInput!) {
+    saveBooks(book: $book) {
       _id
       email
+      username
       savedBooks {
         id
         title
-        author
+        authors
         description
         image
         link
@@ -19,7 +20,9 @@ const SAVE_BOOK = gql`
 `;
 
 export const useHandleSavedButton = () => {
-  const [saveBook] = useMutation(SAVE_BOOK);
+  const [saveBook] = useMutation(SAVE_BOOK, {
+    fetchPolicy: 'network-only',  // Ensure it bypasses the cache and gets fresh data
+  });
 
   const handleSavedButton = async (book) => {
     // Retrieve the token from cookies
@@ -31,6 +34,7 @@ export const useHandleSavedButton = () => {
     }
 
     console.log('Token:', token);
+    console.log('Book to save:', book);
 
     // Ensure the book object has the expected structure
     if (!book || !book.volumeInfo) {
@@ -42,7 +46,7 @@ export const useHandleSavedButton = () => {
     const bookInput = {
       id: book.id,
       title: book.volumeInfo.title,
-      author: book.volumeInfo.authors?.join(', ') || 'Unknown',
+      authors: book.volumeInfo.authors?.join(', ') || 'Unknown',
       description: book.volumeInfo.description,
       image: book.volumeInfo.imageLinks?.thumbnail,
       link: book.volumeInfo.infoLink,
@@ -60,6 +64,11 @@ export const useHandleSavedButton = () => {
         },
       });
       console.log(`Book with ID ${book.id} saved`, data);
+      // Check if savedBooks are in the response
+     
+      console.log('Variables being sent to Apollo:', { book: bookInput });
+
+    
     } catch (error) {
       console.error('Error saving book', error);
       if (error.networkError) {

@@ -1,78 +1,43 @@
-// Profile.js (React Component)
 import React, { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
-import axios from 'axios';
-import * as jwt_decode from 'jwt-decode';
-import Cookies from 'js-cookie'
-import BookCard from '../components/bookCard'
+import { useQuery } from '@apollo/client';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
+import { GET_ME } from '../utils/mutations';
 
-
-
-const GET_ME = gql`
-  query me {
-    me {
-      id
-      email
-      savedBooks {
-        id
-        volumeInfo {
-          title
-          authors
-          publishedDate
-          imageLinks {
-            thumbnail
-          }
-          description
-        }
-      }
-    }
-  }
-`;
-
-
-
+// Profile Component
 const Profile = () => {
-
     const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
         // Extract userId from the token stored in cookies
-        const token = Cookies.get('id_token'); // Assuming the token is saved in cookies
+        const token = Cookies.get('id_token');
         if (token) {
-          const decodedToken = jwt_decode(token); // Use the correct `decode` function here
-          setUserId(decodedToken._id);  // Get userId from decoded token
+            const decoded = jwtDecode(token); // Decode the token to extract userId
+            setUserId(decoded._id);  // Get userId from decoded token
         }
-      }, []);
+    }, []);
+
+    // Use Apollo's `useQuery` hook to fetch the user's data
+    const { loading, error, data } = useQuery(GET_ME);
 
     useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const response = await axios.get(`/user/${userId}/saved-books`);
-                // Safeguard: ensure books is always an array, even if API returns null or undefined
-                const booksData = response.data.items || []; // If items is undefined or null, set an empty array
-
-                setBooks(booksData); // Set the books state
-            } catch (error) {
-                console.error('Error fetching saved books', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (userId) {
-            fetchBooks(); // Only fetch books if userId is available
+        if (data) {
+            // Log the data to inspect the response structure
+            console.log('Fetched data:', data);
+            console.log('Saved Books:', data?.me?.savedBooks);
+            setBooks(data?.me?.savedBooks || []); // Set books state
         }
-    }, [userId]);
-
+    }, [data]); // Runs whenever the `data` changes
+    
+    
     return (
         <div id="profile1">
             <div className="heading justify-center">
                 <h2>Profile Page</h2>
             </div>
             <div className="avatar" id="profileAvatar">
-                <div className=" rounded-full size-60">
+                <div className="rounded-full size-60">
                     <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
             </div>
@@ -84,33 +49,31 @@ const Profile = () => {
                 <div className="flex w-full flex-col">
                     <div id="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Book List</h3>
-                        {/* book images */}
-                        <p>book images here</p>
-                        {(
-                            <div>
-                                <h2>Saved Books</h2>
-                                {books.length > 0 ? (
-                                    <div className="card-grid" id="BookCard">
-                                        {books.map((book, index) => (
-                                        <BookCard key={index} book={book} />
-                                        ))}
+                        {loading && <p>Loading...</p>}
+                        {error && <p>Error: {error.message}</p>}
+                        {books.length > 0 ? (
+                            <div className="card-grid" id="BookCard">
+                                {books.map((data) => (
+                                    <div key={data.id} className="book-card">
+                                        {/* Check if book.image is available */}
+                                        <img src={book.image || 'default-image-url.jpg'} alt={book.title} />
+                                        <h4>{book.title}</h4>
+                                        <p>Authors: {book.authors?.join(', ')}</p>
                                     </div>
-                                    ) : (
-                                    <p>No saved books found.</p>
-                                )}
+                                ))}
                             </div>
+                        ) : (
+                            <p>No saved books found.</p>
                         )}
                     </div>
                     <div className="divider"></div>
                     <div id="profileCards1" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Movie List</h3>
-                        {/* movie images */}
                         <p>movie images here</p>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 };
-
 export default Profile;
