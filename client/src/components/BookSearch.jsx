@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHandleSavedButton } from '../utils/handleSavedButton';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { searchBooks } from '../utils/API';
+
 
 import searchGoogleBooks from '../utils/API';
 import './BookSearch.css';
@@ -11,6 +11,7 @@ const BookSearch = () => {
     const [query, setQuery] = useState("");
     const [book, setBook] = useState("");
     const [data, setData] = useState([]);
+    const [savedBookIds, setSavedBookIds] = useState([]);
     const handleSavedButton = useHandleSavedButton();
 
     function handleChange(event) {
@@ -58,18 +59,20 @@ const BookSearch = () => {
                                 <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                             </figure>
                             <div className="card-body">
-                                <p>{book.searchInfo.textSnippet}</p>
+                                <p>{book.searchInfo?.textSnippet}</p>
                                 <div className="card-actions justify-end"></div>
                                 {/*if user is logged in, display save button*/}
                                 {/* {user?.loggedIn && ( */}
                             <button 
                                 className="btn btn-primary" 
-                                id={book.id} 
+                                disabled={savedBookIds?.some((savedBookId) => savedBookId === book.id)}
                                 onClick={() => handleSavedButton(book)}
                             >
-                                Save to your Bookshelf!
+                               {savedBookIds?.some((savedBookId) => savedBookId === book.id)
+                                            ? 'This book has already been saved!'
+                                            : 'Save to your Bookshelf!'}
                             </button>
-                        {/* )} */}
+                      
                             </div>
                         </div>
                     ))}

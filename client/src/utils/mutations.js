@@ -5,25 +5,27 @@ export const GET_ME = gql`
     me {
       _id
       email
+      username
       savedBooks {
-        bookId
+        id
         title
         authors
         description
-        link
         image
+        link
         }
       }
     }
 `;
 
 export const SAVE_BOOK = gql`
-  mutation saveBook($book: BookInput!) {
-    saveBook(book: $book) {
+  mutation saveBooks($book: BookInput!) {
+    saveBooks(book: $book) {
       _id
       email
+      username
       savedBooks {
-        bookId
+       id
         title
         authors
         description
@@ -42,7 +44,7 @@ mutation removeBook($bookId: String!) {
       email
       bookCount
       savedBooks {
-        bookId
+       id
         title
         authors
         description
