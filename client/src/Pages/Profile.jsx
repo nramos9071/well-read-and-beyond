@@ -56,9 +56,9 @@ const Profile = () => {
                                 {books.map((data) => (
                                     <div key={data.id} className="book-card">
                                         {/* Check if book.image is available */}
-                                        <img src={book.image || 'default-image-url.jpg'} alt={book.title} />
-                                        <h4>{book.title}</h4>
-                                        <p>Authors: {book.authors?.join(', ')}</p>
+                                        <img src={data.image || 'default-image-url.jpg'} alt={data.title} />
+                                        <h4>{data.title}</h4>
+                                        <p>Authors: {data.authors?.join(', ')}</p>
                                     </div>
                                 ))}
                             </div>
