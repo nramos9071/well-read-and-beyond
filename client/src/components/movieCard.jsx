@@ -1,6 +1,6 @@
 function MovieCard() {
     return (
-        <div id="movieCard" className="card card-side bg-base-100 shadow-xl size-72">
+        <div id="movieCard" className="card card-side bg-base-100 shadow-xl size-60">
             <figure>
                 <img
                     src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"

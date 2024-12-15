@@ -13,16 +13,16 @@ const Home = () => {
    
     return (
 
-        <div>
-            {/* {search input} */}
-            <div>
-                <BookSearch />
+        <div className="contentContainer">
+            <div id="searchContentContainer">
+                {/* {search input} */}
+                <div>
+                    <BookSearch />
+                </div>
             </div>
-            {/* <div className="container">
-                <h1>Welcome to the Home Page</h1>
-            </div> */}
-            
-                <div className="movieRecs flex-auto flex-col rounded box grid-rows-2 grid-cols-4">
+
+                {/* The div holding Movie Recommendations */}
+                <div className="movieRecs rounded box  justify-center">
                     <h3 className="rounded box">Movie Recommendations</h3>
                     <div id="homePageMovies" className="flex-auto">
                         <ul id="homePageMovieList" className="flex-col">

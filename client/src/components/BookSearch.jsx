@@ -33,7 +33,7 @@ const BookSearch = () => {
 
     };
     return (
-        <div>
+        <div id="bookSearchDiv" className="flex-auto rounded box">
             <form onSubmit={async (event) => {
                 event.preventDefault();
                 const data = await searchGoogleBooks(query);
@@ -53,7 +53,7 @@ const BookSearch = () => {
                 <h2>Search Results</h2>
                 <div className="card-grid" id= "BookCard">
                     {data?.items?.map((book) => (
-                        <div className="card-item" key={book.id || book.volumeInfo.title}>
+                        <div className="card-item size-45" key={book.id || book.volumeInfo.title}>
                             <h2 className="card-title" id ="bookTitle">{book.volumeInfo.title}</h2>
                             <figure>
                                 <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
