@@ -6,7 +6,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 import Header from './components/header';
 import Footer from './components/footer';
 import Navbar from './components/Navbar';
@@ -20,7 +20,7 @@ const httpLink = createHttpLink({
 // Set up authentication link (if needed)
 const authLink = setContext((_, { headers }) => {
     // Get the authentication token from local storage if it exists
-    const token = localStorage.getItem('auth-token');
+    const token = Cookies.get('id_token');
     // Return the headers to the context so httpLink can read them
     return {
         headers: {
