@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Quizes from '../components/Quizes'; // Import your Quizes component
+import Quizes from '../components/Quizes'; 
+import Navbar from '../components/Navbar';// Import your Quizes component
 
 const Recommendations = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,6 +43,9 @@ const Recommendations = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
+      <div>
+          <Navbar />
+      </div>
       <h1 className="text-2xl font-bold mb-4">
         Not sure what book you should read next? Answer some questions and we’ll give you a book recommendation!
       </h1>

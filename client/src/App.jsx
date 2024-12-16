@@ -8,8 +8,8 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Header from './components/header';
-import Footer from './components/footer';
-import Navbar from './components/Navbar';
+
+
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
@@ -43,11 +43,11 @@ function App() {
             <Header />
         
         <main>
-            <Navbar />
+           
             <Outlet />
             
         </main>
-        <Footer />
+       
         </ApolloProvider>
     )
 }
