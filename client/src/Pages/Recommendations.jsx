@@ -10,19 +10,19 @@ const Recommendations = () => {
     {
       title: "What's your style?",
       description: "Tell us what books you like for recommendations?",
-      image: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+      image: "https://cdn.pixabay.com/photo/2014/08/16/18/17/book-419589_1280.jpg",
       quizId: 1, // quizId for each card
     },
     {
       title: "What's your mood?",
       description: "Tell us your mood for recommendations?",
-      image: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+      image: "https://cdn.pixabay.com/photo/2019/05/04/14/22/woman-4178187_1280.jpg",
       quizId: 2, 
     },
     {
       title: "What's your horror style?",
       description: "Tell us what horror you like for recommendations?",
-      image: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+      image: "https://cdn.pixabay.com/photo/2020/06/05/19/02/chamber-5264172_1280.jpg",
       quizId: 3, 
     }
   ];
