@@ -12,6 +12,31 @@ p {
     padding: 15px;
 }
 
+.navbar {
+    display: inline-block;
+    width: 100%;
+}
+
+.menu {
+    width: 100%;
+}
+
+.menu .btn {
+    display: flex;
+    /* width: 100%; */
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 20px;
+}
+
+.menu .btn #logoutbtn {
+    width: 200px;
+    justify-content: end;
+    align-items: center;
+    padding: 5px;
+}
+
 /* Home Page */
 
 h3 {
