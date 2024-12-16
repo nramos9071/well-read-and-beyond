@@ -122,11 +122,21 @@ h2 {
     margin-top: 30px;
 }
 
+.usernameP {
+    font-family: 'Bebas Neue', Times, serif;
+    font-size: 28px;
+    color: rgb(87, 54, 10);
+    background-color: bisque;
+    padding: 15px;
+    margin-top: 0;
+}
+
 .bioPara {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
-    font-size: 24px;
+    font-size: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
+    /* background-color: bisque; */
 }
 
 #userContent {

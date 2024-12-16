@@ -44,10 +44,12 @@ const Recommendations = () => {
   };
 
   return (
+    <div>
+    <div>
+    <Navbar />
+</div>
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-      <div>
-          <Navbar />
-      </div>
+
       <h1 className="text-2xl font-bold mb-4">
         Not sure what book you should read next? Answer some questions and we’ll give you a book recommendation!
       </h1>
@@ -105,7 +107,7 @@ const Recommendations = () => {
       {showQuiz && <Quizes selectedQuiz={selectedQuiz} />} {/* Pass selectedQuiz as a prop */}
 
     </div>
-
+    </div>
   );
 };
 
