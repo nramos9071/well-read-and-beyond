@@ -51,28 +51,36 @@ const BookSearch = () => {
             {/*search results */}
             <div>
                 <h2>Search Results</h2>
-                <div className="card-grid" id= "BookCard">
+                <div className="card-grid" id="BookCard">
                     {data?.items?.map((book) => (
-                        <div className="card-item size-45" key={book.id || book.volumeInfo.title}>
-                            <h2 className="card-title" id ="bookTitle">{book.volumeInfo.title}</h2>
-                            <figure>
-                                <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
-                            </figure>
-                            <div className="card-body">
-                                <p>{book.searchInfo?.textSnippet}</p>
-                                <div className="card-actions justify-end"></div>
-                                {/*if user is logged in, display save button*/}
-                                {/* {user?.loggedIn && ( */}
-                            <button 
-                                className="btn btn-primary" 
-                                disabled={savedBookIds?.some((savedBookId) => savedBookId === book.id)}
-                                onClick={() => handleSavedButton(book)}
-                            >
-                               {savedBookIds?.some((savedBookId) => savedBookId === book.id)
-                                            ? 'This book has already been saved!'
-                                            : 'Save to your Bookshelf!'}
-                            </button>
-                      
+                        <div className="card-item w-full max-w-md" key={book.id || book.volumeInfo.title}>
+                            {/* Card Structure */}
+                            <div className="card card-side flex flex-row w-full max-w-md">
+                                {/* Image on left side */}
+                                <figure className="flex-shrink-0 mr-4">
+                                    <img
+                                        className="w-40 h-auto object-cover"
+                                        src={book.volumeInfo.imageLinks?.thumbnail}
+                                        alt={book.volumeInfo.title} />
+                                </figure>
+                                {/* Text content on the right side */}
+                                <div className="card-body flex flex-col justify-between w-2/3">
+                                    <h2 className="card-title text-xl font-semibold">{book.volumeInfo.title}</h2>
+                                    <p className="text-sm">{book.searchInfo?.textSnippet || 'No description available.'}</p>
+                                    <div className="card-actions justify-center w-full mt-4">
+                                        {/*if user is logged in, display save button*/}
+                                        <button
+                                            className="btn btn-primary w-full max-w-xs"
+                                            disabled={savedBookIds?.some((savedBookId) => savedBookId === book.id)}
+                                            onClick={() => handleSavedButton(book)}
+                                        >
+                                            {savedBookIds?.some((savedBookId) => savedBookId === book.id)
+                                                ? 'This book has already been saved!'
+                                                : 'Save to your Bookshelf!'}
+                                        </button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     ))}
