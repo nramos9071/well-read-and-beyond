@@ -52,13 +52,13 @@ const Profile = () => {
                         {loading && <p>Loading...</p>}
                         {error && <p>Error: {error.message}</p>}
                         {books.length > 0 ? (
-                            <div className="card-grid" id="BookCard">
+                            <div className="card-grid" id="bookCard">
                                 {books.map((data) => (
-                                    <div key={data.id} className="book-card">
+                                    <div key={data.id} className="card book-card rounded bg-base-100 min-w-30 w-56 h-72 p-2 shadow-xl size-40">
                                         {/* Check if book.image is available */}
                                         <img src={data.image || 'default-image-url.jpg'} alt={data.title} />
-                                        <h4>{data.title}</h4>
-                                        <p>Authors: {data.authors?.join(', ')}</p>
+                                        <h4 className="card-title justify-center" id="profileBookCardTitle">{data.title}</h4>
+                                        <p className="card-body justify-center" id="profileBookCardBody">{data.authors?.join(', ')}</p>
                                     </div>
                                 ))}
                             </div>

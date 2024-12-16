@@ -117,3 +117,20 @@ p {
     color: rgb(87, 54, 10);
     padding: 15px;
 }
+
+#profileBookCardTitle {
+    font-family: 'Bebas Neue', Times, serif;
+    font-size: 28px;
+    color: rgb(87, 54, 10);
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+#profileBookCardBody {
+    font-family: Cambria, Georgia, 'Times New Roman', Times, serif;
+    color: rgb(87, 54, 10);
+    align-items: center;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
