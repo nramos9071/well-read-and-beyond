@@ -1,3 +1,5 @@
+import React from "react";
+
 function MovieCard( { title, image, releaseDate }) {
     return (
         <div id="movieCard" className="card card-side bg-base-100 shadow-xl rounded size-44 flex-auto">
@@ -17,6 +19,8 @@ function MovieCard( { title, image, releaseDate }) {
             </div>
         </div>
     );
+   
+  
 }
 
 export default MovieCard;
