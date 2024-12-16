@@ -47,15 +47,17 @@ export async function quizBooksResults(answers) {
 export async function searchTMDBMovies(query) {
   const encodedQuery = encodeURIComponent(query); // Properly encode the query string
   const url = `${tmdbBaseURL}/search/movie?api_key=${tmdbApiKey}&query=${encodedQuery}&language=en-US&page=1&include_adult=false`;
-  
+
   try {
     const response = await axios.get(url);
 
     // Log the full response to check the structure
-    console.log('TMDB API Response:', response);
+    console.log('hello TMDB API Response:', response);
+    console.log('hi TMDB API Data:', response.data);
+    console.log('Encoded Query:', encodedQuery);
 
-    // Check if we have results, then slice the first 5 results
-    const results = response.data.results ? response.data.results.slice(0, 5) : [];
+    // Check if we have results, then slice the first 3 results
+    const results = response.data ? response.data.results.slice(0, 3) : [];
 
     // Log the sliced results
     console.log('Sliced Results:', results);
