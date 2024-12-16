@@ -31,8 +31,8 @@ const Profile = () => {
             setBooks(data?.me?.savedBooks || []); // Set books state
         }
     }, [data]); // Runs whenever the `data` changes
-    
-    
+
+
     return (
         <div id="profile1">
             <div>
@@ -47,8 +47,8 @@ const Profile = () => {
                 </div>
             </div>
             <div className="userBio place-items-center">
-                <p>username</p>
-                <p className="bioPara">user bio here</p>
+                <p className="usernameP text-lg rounded">@well_reader_2024</p>
+                <p className="bioPara rounded">I love to read, but sometimes I want a story that's off the page! That's why I made a profile on WR&B.</p>
             </div>
             <div id="userContent">
                 <div className="flex w-full flex-col">
@@ -74,12 +74,13 @@ const Profile = () => {
                     <div className="divider"></div>
                     <div id="profileCards1" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Movie List</h3>
-                        <p>movie images here</p>
-                        <div>
-<Footer />
-</div>
+                        <p>Did you see a suggested movie you might like? Save it to your profile to watch later!</p>
+
                     </div>
                 </div>
+            </div>
+            <div>
+                <Footer />
             </div>
         </div>
     );
