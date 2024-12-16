@@ -1,36 +1,29 @@
 import React, { useState } from "react";
+import '../App.css';
 
 
-function BookCard({data}) {
-    // const [show,setShow]=useState(false);
-    // const [bookItem,setItem]=useState();
+function BookCard({ data }) {
     console.log(data);
     return (
-      <div>
-
-        <div id="bookCard" className="card card-side bg-base-100 shadow-xl size-40">
-        <div>
-                <ul>
-                    {data?.items?.map((book, index) => (
-                       
-                        <li key={index}>
-                            <figure>
-                            <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
-                            </figure>
-                            <div className="card-body"></div>
-                            <h2 className="card-actions justify-end">{book.title}</h2>
-                            <h3>{book.id}</h3>
-                            <div className="card-actions justify-end">
-                    <button className="btn btn-primary">View</button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+        <div className="card card-side  bg-base-100 shadow-xl flex flex-row w-full max-w-md">
+            {data?.items?.map((book, index) => (
+                <div key={index} className="flex flex-row w-full">
+                    <figure className="flex-shrink-0 mr-4">
+                        <img 
+                            className="w-24 h-36 object-cover" 
+                            src={book.volumeInfo.imageLinks.thumbnail}
+                            alt={book.volumeInfo.title} />
+                    </figure>
+                    <div className="card-body flex flex-col justify-between">
+                        <h2 className="text-xl font-semibold">{book.title}</h2>
+                        <p className="text-sm text-gray-600">{book.volumeInfo.description ? book.volumeInfo.description : 'No description available.'}</p>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
-            
-            </div>
-        </div>
-      
     );
 }
 
