@@ -18,22 +18,11 @@ const Home = () => {
     // Query to get the current user's saved books
     const { loading: booksLoading, error, data } = useQuery(GET_ME);
 
-    // const fetchMovieRecommendations = async (bookTitle) => {
-    //     try {
-    //         const response = await searchTMDBMovies(bookTitle);
-    //         return response.data.results.slice(0, 5); // Limit to 5 results
-    //     } catch (error) {
-    //         console.error('Error fetching movie recommendations:', error);
-    //         return []; // Return empty if there's an error
-    //     }
-    // };
 
-
-    // const { error, data } = useQuery(GET_SAVED_BOOKS);
 
     // Fetch movie recommendations for all saved books
     useEffect(() => {
-        if (data) {
+        if (data && data.me && data.me.savedBooks) {
             const bookTitles = data.me.savedBooks.map(book => book.title);
             // Fetch movies for all saved books
             const fetchMoviesForSavedBooks = async () => {
@@ -42,8 +31,12 @@ const Home = () => {
 
                 // Loop through each book title and fetch movie recommendations
                 for (const title of bookTitles) {
-                    const movieRecs = await searchTMDBMovies(title);
-                    results[title] = movieRecs;
+                    try {
+                        const movieRecs = await searchTMDBMovies(title);
+                        results[title] = movieRecs;
+                    } catch (error) {
+                        console.error(`Error fetching movies for "${title}":`, error);
+                    }
                 }
 
                 setMovieResults(results); // Save movie results for each book
@@ -82,15 +75,19 @@ const Home = () => {
                             <div key={bookTitle}>
                                 <h4>{bookTitle}</h4>
                                 <div className="movie-list flex flex-wrap justify-center gap-2">
-                                    {movies.length > 0 ? (
-                                        movies.map((movie) => (
-                                            <MovieCard
+                                    {/* Check if there are movies, and map them */}
+                                    {movies && movies.length > 0 ? (
+                                        movies.map((movie) => {
+                                            // Debug: Check if movie has the necessary properties
+                                            console.log('Movie:', movie); // Ensure movie object has 'poster_path'
+                                            return (<MovieCard
                                                 key={movie.id}
                                                 title={movie.title}
                                                 image={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                                                 releaseDate={movie.release_date}
                                             />
-                                        ))
+                                            );
+                                        })
                                     ) : (
                                         <p>No movie recommendations found.</p>
                                     )}
