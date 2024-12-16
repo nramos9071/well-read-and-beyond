@@ -6,6 +6,7 @@ import MovieCard from '../components/movieCard';
 import BookCard from '../components/bookCard';
 import BookSearch from '../components/BookSearch';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 
 
@@ -72,6 +73,7 @@ const Home = () => {
                 <div>
                     <BookSearch />
                 </div>
+       
             </div>
 
             {/* The div holding Movie Recommendations */}
@@ -101,13 +103,18 @@ const Home = () => {
                                   })
                                     ) : (
                                         <p>No movie recommendations found.</p>
-                                     
+                                       
                                     )}
-                   
+                  
                                 </div>
+                         
                             </div>
+                           
                         ))
                     )}
+                    <div>
+<Footer />
+</div>
                 </div>
             </div>
         </div>

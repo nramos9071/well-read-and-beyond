@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { GET_ME } from '../utils/mutations';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Profile Component
 const Profile = () => {
@@ -74,6 +75,9 @@ const Profile = () => {
                     <div id="profileCards1" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Movie List</h3>
                         <p>movie images here</p>
+                        <div>
+<Footer />
+</div>
                     </div>
                 </div>
             </div>

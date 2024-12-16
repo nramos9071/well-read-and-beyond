@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Quizes from '../components/Quizes'; 
-import Navbar from '../components/Navbar';// Import your Quizes component
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+// Import your Quizes component
 
 const Recommendations = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -94,12 +96,16 @@ const Recommendations = () => {
         >
           Next
         </button>
+        <div>
+          <Footer />
+        </div>
       </div>
 
       {/* Show Quiz Component when selected */}
       {showQuiz && <Quizes selectedQuiz={selectedQuiz} />} {/* Pass selectedQuiz as a prop */}
 
     </div>
+
   );
 };
 
