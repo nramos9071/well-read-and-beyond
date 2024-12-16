@@ -17,7 +17,7 @@ const fetchBookData = async (bookTitle) => {
 
 const fetchMovieData = async (bookTitle) => {
   const apiKey = '6e7a2b9da1c781e65f8f1763ae61eac5';
-  const url = `http://www.omdbapi.com/?t=${encodeURIComponent(bookTitle)}&apikey=${apiKey}`;
+  // const url = `http://www.omdbapi.com/?t=${encodeURIComponent(bookTitle)}&apikey=${apiKey}`;
 
   try {
     const response = await fetch(url);

@@ -1,9 +1,14 @@
 // Axios is a popular NPM package used for preforming API requests
 import axios from 'axios';
 // import { get } from 'mongoose';
-const apiKey = import.meta.env.VITE_API_KEY;
-const baseURL = 'https://www.googleapis.com/books/v1/volumes';
-console.log(apiKey);
+const googleApiKey = import.meta.env.VITE_API_KEY;
+const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
+
+// Base URLs for the APIs
+const googleBooksBaseURL = 'https://www.googleapis.com/books/v1/volumes';
+const tmdbBaseURL = 'https://api.themoviedb.org/3';
+
+console.log(googleApiKey);
 
 
 
@@ -11,7 +16,7 @@ console.log(apiKey);
 
 export default function searchGoogleBooks (query){
         //setting the query to the base URL to produce a maximum of 10 results for non-fiction books
-        const url = `${baseURL}?q=${query}&maxResults=10&fiction&orderBy=relevance&key=${apiKey}`;
+        const url = `${googleBooksBaseURL}?q=${query}&maxResults=10&fiction&orderBy=relevance&key=${googleApiKey}`;
     
     return axios
       .get(url)
@@ -30,7 +35,7 @@ export default function searchGoogleBooks (query){
 export async function quizBooksResults(answers) {
   // Combine answers into a single query string that is compatible with the Google Books API
   const query = answers.join('&'); 
-  const url = `${baseURL}?q=${query}&maxResults=5&key=${apiKey}`;
+  const url = `${googleBooksBaseURL}?q=${query}&maxResults=5&key=${googleApiKey}`;
   return axios
       .get(url)
       .then((response) => {
@@ -41,3 +46,29 @@ export async function quizBooksResults(answers) {
     throw error;
   });
 };
+
+// TMDB API Request - Search Movies by Title (from Book Title)
+export async function searchTMDBMovies(query) {
+  const url = `${tmdbBaseURL}/search/movie?api_key=${tmdbApiKey}&query=${query}&language=en-US`;
+
+  return axios
+      .get(url)
+      .then((response) => response)
+      .catch((error) => {
+          console.error('Error fetching movies from TMDB API:', error.response ? error.response.data : error.message);
+          throw error;
+      });
+}
+
+// TMDB API Request - Fetch Movie Recommendations by Genre
+export async function fetchMoviesByGenre(genreId) {
+  const url = `${tmdbBaseURL}/discover/movie?api_key=${tmdbApiKey}&with_genres=${genreId}&language=en-US`;
+
+  return axios
+      .get(url)
+      .then((response) => response)
+      .catch((error) => {
+          console.error('Error fetching movies by genre from TMDB API:', error);
+          throw error;
+      });
+}
