@@ -5,6 +5,7 @@ import { searchTMDBMovies } from '../utils/API';
 import MovieCard from '../components/movieCard';
 import BookCard from '../components/bookCard';
 import BookSearch from '../components/BookSearch';
+import Navbar from '../components/Navbar';
 
 
 
@@ -63,6 +64,9 @@ const Home = () => {
     return (
 
         <div className="contentContainer">
+            <div>
+    <Navbar />
+</div>
             <div id="searchContentContainer">
                 {/* {search input} */}
                 <div>
@@ -97,7 +101,9 @@ const Home = () => {
                                   })
                                     ) : (
                                         <p>No movie recommendations found.</p>
+                                     
                                     )}
+                   
                                 </div>
                             </div>
                         ))

@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { GET_ME } from '../utils/mutations';
+import Navbar from '../components/Navbar';
 
 // Profile Component
 const Profile = () => {
@@ -33,6 +34,9 @@ const Profile = () => {
     
     return (
         <div id="profile1">
+            <div>
+                <Navbar />
+            </div>
             <div className="heading justify-center">
                 {/* <h2>Profile Page</h2> */}
             </div>
