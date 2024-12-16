@@ -53,6 +53,38 @@ h3 {
     margin: 10px;
 }
 
+#movieCard {
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.homeMovieCardBody {
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    padding: 0;
+}
+
+.homeMovieCardTitle {
+    /* align-items: center; */
+    margin-top: 0;
+    padding: 0;
+}
+
+.movieButton {
+    width: 80%;
+    padding: 0;
+    margin: 0;
+}
+
+.movieCardActions {
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 /* Profile Page */
 
 h2 {

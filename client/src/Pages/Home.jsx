@@ -40,11 +40,11 @@ const Home = () => {
             {/* The div holding Movie Recommendations */}
             <div className="movieRecs rounded box  justify-center">
                 <h3 className="rounded box">Movie Recommendations</h3>
-                <div id="homePageMovies" className="flex-auto">
+                <div id="homePageMovies" className="flex flex-wrap justify-center gap-4">
                         {loading ? (
                             <p>Loading...</p>
                         ) : (
-                            <div className="movie-list">
+                            <div className="movie-list flex flex-wrap justify-center gap-2">
                                 {movies.map((movie) => (
                                     <MovieCard
                                         key={movie.id}

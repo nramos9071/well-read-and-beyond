@@ -1,15 +1,11 @@
 // Axios is a popular NPM package used for preforming API requests
 import axios from 'axios';
-// import { get } from 'mongoose';
 const googleApiKey = import.meta.env.VITE_API_KEY;
 const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 // Base URLs for the APIs
 const googleBooksBaseURL = 'https://www.googleapis.com/books/v1/volumes';
 const tmdbBaseURL = 'https://api.themoviedb.org/3';
-
-console.log(googleApiKey);
-
 
 
 // Using axios, we create a search method that is specific to the API we are using
@@ -49,15 +45,27 @@ export async function quizBooksResults(answers) {
 
 // TMDB API Request - Search Movies by Title (from Book Title)
 export async function searchTMDBMovies(query) {
-  const url = `${tmdbBaseURL}/search/movie?api_key=${tmdbApiKey}&query=${query}&language=en-US`;
+  const encodedQuery = encodeURIComponent(query); // Properly encode the query string
+  const url = `${tmdbBaseURL}/search/movie?api_key=${tmdbApiKey}&query=${encodedQuery}&language=en-US&page=1&include_adult=false`;
+  
+  try {
+    const response = await axios.get(url);
 
-  return axios
-      .get(url)
-      .then((response) => response)
-      .catch((error) => {
-          console.error('Error fetching movies from TMDB API:', error.response ? error.response.data : error.message);
-          throw error;
-      });
+    // Log the full response to check the structure
+    console.log('TMDB API Response:', response);
+
+    // Check if we have results, then slice the first 5 results
+    const results = response.data.results ? response.data.results.slice(0, 5) : [];
+
+    // Log the sliced results
+    console.log('Sliced Results:', results);
+
+    return { ...response, data: { ...response.data, results } };
+  } catch (error) {
+    console.error('Error fetching movies from TMDB API:', error);
+    throw error;
+}
+
 }
 
 // TMDB API Request - Fetch Movie Recommendations by Genre
