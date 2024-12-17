@@ -13,8 +13,8 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-cream shadow-md top-0 left-0 right-0">
-          <header style={{ backgroundColor: '#FFB6C1' }} className="shadow-md p-4">
+    <div className="navbar bg-cream shadow-md top-0 left-0 right-0" style={{ backgroundColor: '#FFB6C1' }} className="shadow-md p-4">
+          
       <div className="container mx-auto flex justify-center">
         <h1
           className="text-6xl text-center"
@@ -26,7 +26,7 @@ const Navbar = () => {
           Well Read and Beyond
         </h1>
       </div>
-    </header>
+  
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal flex px-1">
           <li><a className="btn bg-pink-600 text-white border-none hover:bg-pink-700" href="/Home">Home</a></li>
