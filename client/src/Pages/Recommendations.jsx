@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Quizes from '../components/Quizes';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 // Import your Quizes component
 
 const Recommendations = () => {
