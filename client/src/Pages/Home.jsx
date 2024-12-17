@@ -66,6 +66,9 @@ const Home = () => {
     return (
 
         <div className="contentContainer ">
+            <div>
+                <Navbar />
+            </div>
           
             <div id="searchContentContainer">
                 {/* {search input} */}
