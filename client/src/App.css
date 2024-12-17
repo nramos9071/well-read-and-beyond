@@ -17,8 +17,13 @@ p {
     width: 100%;
 }
 
+.navbar-center{
+    flex-wrap: wrap;
+}
+
 .menu {
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .menu .btn {
