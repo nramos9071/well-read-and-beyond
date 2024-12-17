@@ -18,7 +18,7 @@ const Footer = () => {
         </a>{" "}
         |{" "}
         <a href="https://github.com/nramos907" aria-label="Nicholas Ramos">
-          Nicholas Ramos
+          Nick Ramos
         </a>{" "}
         |{" "}
         <a href="https://github.com/Br1dg3tt" aria-label="Bridgett Rice">
