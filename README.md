@@ -54,7 +54,7 @@ To start the server `npm run develop`
 ## Links 
 [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/nramos9071/well-read-and-beyond)
 
-[Here] is the deployed site.
+[Here](https://well-read-and-beyond-2.onrender.com) is the deployed site.
 
 ## Acknowledgements
 
