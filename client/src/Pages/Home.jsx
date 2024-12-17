@@ -85,7 +85,7 @@ const Home = () => {
                         Object.entries(movieResults).map(([bookTitle, movieData]) => (
                             <div key={bookTitle}>
                                 <h4 className="homeBookTitle rounded box">{bookTitle}</h4>
-                                <div className="movie-list flex flex-wrap justify-center gap-2">
+                                <div className="movie-list flex flex-wrap justify-center w-auto gap-2">
                                     {/* Check if there are movies, and map them */}
                                     {movieData.data.results && movieData.data.results.length > 0 ? (
                                         movieData.data.results.map((movie) => {

@@ -50,14 +50,14 @@ const Profile = () => {
             </div>
             <div id="userContent">
                 <div className="flex w-full flex-col">
-                    <div id="profileCards" className="card bg-base-300 rounded-box grid h-20 place-items-left">
+                    <div id="profileCards" className="card bg-base-300 rounded-box grid h-50 place-items-left">
                         <h3 className="profileH3">Book List</h3>
                         {loading && <p>Loading...</p>}
                         {error && <p>Error: {error.message}</p>}
                         {books.length > 0 ? (
                             <div className="card-grid" id="bookCard">
                                 {books.map((data) => (
-                                    <div key={data.id} className="card book-card rounded bg-base-100 min-w-30 w-56 h-72 p-2 shadow-xl size-40">
+                                    <div key={data.id} className="card book-card rounded bg-base-100 min-w-30 w-56 h-96 p-2 shadow-xl size-40">
                                         {/* Check if book.image is available */}
                                         <img src={data.image || 'default-image-url.jpg'} alt={data.title} />
                                         <h4 className="card-title justify-center" id="profileBookCardTitle">{data.title}</h4>
@@ -69,12 +69,12 @@ const Profile = () => {
                             <p>No saved books found.</p>
                         )}
                     </div>
-                    <div className="divider"></div>
+                    {/* <div className="divider"></div>
                     <div id="profileCards1" className="card bg-base-300 rounded-box grid h-20 place-items-left">
                         <h3 className="profileH3">Movie List</h3>
                         <p>Did you see a suggested movie you might like? Save it to your profile to watch later!</p>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div>
