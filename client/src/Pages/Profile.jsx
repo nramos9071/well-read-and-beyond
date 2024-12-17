@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { GET_ME } from '../utils/mutations';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 
 // Profile Component
 const Profile = () => {
