@@ -67,6 +67,7 @@ const Home = () => {
         <div className="contentContainer">
             <div>
                 <Navbar />
+                <p>Original Code</p>
             </div>
             <div id="searchContentContainer">
                 {/* {search input} */}
