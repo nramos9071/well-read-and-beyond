@@ -8,6 +8,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Header from './components/header';
+import './index.css';
 
 
 

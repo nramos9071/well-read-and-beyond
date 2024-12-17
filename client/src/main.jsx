@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 // Bringing in the required imports from 'react-router-dom' to set up application routing behavior
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 import App from './App';
 // import Error from './pages/Error';
@@ -11,6 +11,8 @@ import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import Recommendations from './Pages/Recommendations';
 import './App.css'
+import './index.css' 
+
 
 
 // Define the accessible routes, and which components respond to which URL

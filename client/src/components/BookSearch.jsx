@@ -5,6 +5,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 
 import searchGoogleBooks from '../utils/API';
+import '../index.css';
 import './BookSearch.css';
 
 const BookSearch = () => {
