@@ -1,5 +1,5 @@
 import React from "react";
-import '../index.css';
+
 
 function MovieCard( { title, image, releaseDate }) {
     return (

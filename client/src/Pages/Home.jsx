@@ -7,7 +7,7 @@ import BookCard from '../components/bookCard';
 import BookSearch from '../components/BookSearch';
 import Navbar from '../components/Navbar';
 import Footer from '../components/footer';
-import '../index.css';
+
 
 
 
@@ -66,9 +66,7 @@ const Home = () => {
     return (
 
         <div className="contentContainer ">
-            <div>
-                <Navbar />
-            </div>
+          
             <div id="searchContentContainer">
                 {/* {search input} */}
                 <div>
