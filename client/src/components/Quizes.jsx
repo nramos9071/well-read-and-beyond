@@ -91,31 +91,35 @@ const Quizes = ({ selectedQuiz }) => {
         </div>
       </div>
       <div className="card-grid" id="BookCard">
-                    {data.map((book) => (
-                        <div className="card-item" key={book.id || book.volumeInfo.title}>
-                            <h2 className="card-title" id="bookTitle">{book.volumeInfo.title}</h2>
-                            <figure>
-                                <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
-                            </figure>
-                            <div className="card-body">
-                                <p>{book.searchInfo?.textSnippet}</p>
-                                <div className="card-actions justify-end"></div>
-                                {/*if user is logged in, display save button*/}
-                                {/* {user?.loggedIn && ( */}
-                                <button
-                                    className="btn btn-primary"
-                                    id={book.id}
-                                    onClick={Auth?.loggedIn ? () => handleSavedButton(book) : null}
-                                >
-                                    {Auth?.loggedIn ? 'Save to Bookshelf' : 'Log in to save book'}
-                                </button>
+        {data.map((book) => (
+          <div className="card-item w-full max-w-md" key={book.id || book.volumeInfo.title}>
+            <figure className="flex-shrink-0 mr-4">
+              <img
+                className="w-40 h-auto object-cover"
+                src={book.volumeInfo.imageLinks?.thumbnail}
+                alt={book.volumeInfo.title} />
+            </figure>
+            {/* <h2 className="card-title text-xl font-semibold" id="bookTitle">{book.volumeInfo.title}</h2> */}
 
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            <div className="card-body flex flex-col justify-between w-2/3">
+              <h2 className="card-title text-xl font-semibold">{book.volumeInfo.title}</h2>
+              <p className="text-sm">{book.searchInfo?.textSnippet || 'No description available.'}</p>
+              <div className="card-actions justify-center w-full mt-4">
+                {/*if user is logged in, display save button*/}
+                <button
+                  className="btn btn-primary w-full max-w-xs"
+                  id={book.id}
+                  onClick={Auth?.loggedIn ? () => handleSavedButton(book) : null}
+                >
+                  {Auth?.loggedIn ? 'Save to Bookshelf' : 'Log in to save book'}
+                </button>
+              </div>
             </div>
-    
+          </div>
+        ))}
+      </div>
+    </div>
+
   );
 };
 
