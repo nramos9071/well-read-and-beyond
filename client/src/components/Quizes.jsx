@@ -57,7 +57,7 @@ const Quizes = ({ selectedQuiz }) => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-base-200">
+    <div className="quizBox flex items-center justify-center min-h-screen bg-base-200">
       <div className="w-full h-full max-w-5xl border border-gray-300 shadow-lg bg-white p-8">
         <h2 className="text-3xl font-bold text-center mb-6">
           {selectedQuiz === 1 && "What's your next book"}
