@@ -35,6 +35,9 @@ const Profile = () => {
 
     return (
         <div id="profile1">
+             <div>
+                <Navbar />
+            </div>
   
             <div className="heading justify-center">
                 {/* <h2>Profile Page</h2> */}
