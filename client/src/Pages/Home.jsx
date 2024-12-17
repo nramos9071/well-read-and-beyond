@@ -6,7 +6,7 @@ import MovieCard from '../components/movieCard';
 import BookCard from '../components/bookCard';
 import BookSearch from '../components/BookSearch';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 
 
 
