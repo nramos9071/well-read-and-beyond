@@ -207,3 +207,8 @@ h2 {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+/* Recommendations */
+.quizBox {
+    margin: 20px;
+}
