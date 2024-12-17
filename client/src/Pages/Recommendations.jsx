@@ -71,7 +71,7 @@ const Recommendations = () => {
                 <div className="card-body">
                   <h2 className="card-title">{card.title}</h2>
                   <p>{card.description}</p>
-                  <div className="card-actions justify-end">
+                  <div className="card-actions justify-center">
                     <button 
                       className="btn btn-primary"
                       onClick={() => handleStartQuiz(card.quizId)} // Pass quizId to handleStartQuiz
