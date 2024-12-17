@@ -14,9 +14,14 @@
   
   .card-item img {
     margin-left: 15px;
-    width: 100%;
-    height: auto;
+    
+   
     border-radius: 8px;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
   }
   
   .card-title {
@@ -38,6 +43,3 @@
   font-style: italic;
 }
   
-#BookCard {
-
-}
